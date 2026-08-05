@@ -1,11 +1,11 @@
-// Last updated: 8/5/2026, 10:21:44 PM
+// Last updated: 8/5/2026, 10:23:08 PM
 1class Solution {
 2private:
 3    long long findHour(vector<int>& piles, int hour){
 4        long long totalHour = 0;
 5
 6        for(int i=0; i<piles.size(); i++){
-7            totalHour += ceil((double)piles[i] / hour);
+7            totalHour += (piles[i] + hour - 1LL) / hour;
 8        }
 9        
 10        return totalHour;
