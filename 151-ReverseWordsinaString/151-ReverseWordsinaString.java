@@ -1,4 +1,4 @@
-// Last updated: 8/6/2026, 11:13:15 PM
+// Last updated: 8/7/2026, 10:19:36 PM
 1class Solution {
 2    public String reverseWords(String s) {
 3        s = s.trim();
