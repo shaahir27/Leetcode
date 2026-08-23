@@ -1,4 +1,4 @@
-// Last updated: 8/23/2026, 11:05:52 PM
+// Last updated: 8/23/2026, 11:05:56 PM
 1class Solution {
 2public:
 3    bool isAnagram(string s, string t) {
