@@ -1,4 +1,4 @@
-// Last updated: 8/27/2026, 10:55:11 PM
+// Last updated: 8/28/2026, 10:59:21 PM
 1class Solution {
 2private:
 3    bool canSplit(int target, vector<int>& nums, int k){
