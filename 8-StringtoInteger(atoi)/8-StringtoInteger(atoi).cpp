@@ -1,8 +1,8 @@
-// Last updated: 8/31/2026, 10:50:18 PM
+// Last updated: 8/31/2026, 10:54:14 PM
 1class Solution {
 2public:
 3    int myAtoi(string s) {
-4        long long result = 0;
+4        int result = 0;
 5        int sign = 1;
 6        bool started = false;
 7
@@ -39,3 +39,46 @@
 38        return result * sign;
 39    }
 40};
+41
+42
+43/*
+44
+45class Solution {
+46public:
+47    int myAtoi(string s) {
+48        int i = 0;
+49        int n = s.size();
+50        int sign = 1;
+51        long long result = 0;
+52
+53        // 1. Skip leading spaces
+54        while (i < n && s[i] == ' ')
+55            i++;
+56
+57        // 2. Check sign
+58        if (i < n && (s[i] == '+' || s[i] == '-')) {
+59            if (s[i] == '-')
+60                sign = -1;
+61            i++;
+62        }
+63
+64        // 3. Read digits
+65        while (i < n && isdigit(s[i])) {
+66            int digit = s[i] - '0';
+67
+68            // Check overflow before multiplying
+69            if (result > INT_MAX / 10 ||
+70                (result == INT_MAX / 10 && digit > 7)) {
+71                return sign == 1 ? INT_MAX : INT_MIN;
+72            }
+73
+74            result = result * 10 + digit;
+75            i++;
+76        }
+77
+78        return result * sign;
+79    }
+80};
+81
+82
+83*/
