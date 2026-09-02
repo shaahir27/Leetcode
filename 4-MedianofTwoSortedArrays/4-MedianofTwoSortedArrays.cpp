@@ -1,4 +1,4 @@
-// Last updated: 9/2/2026, 11:22:51 PM
+// Last updated: 9/2/2026, 11:23:52 PM
 1class Solution {
 2public:
 3    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
@@ -12,7 +12,7 @@
 11
 12        while(low <= high) {
 13
-14            int cut1 = low + (high - low)/2;
+14            int cut1 = (low + high) >> 1;
 15            int cut2 = (n1 + n2 + 1) / 2 - cut1;
 16
 17            int left1 = cut1 == 0 ? INT_MIN : nums1[cut1-1];
