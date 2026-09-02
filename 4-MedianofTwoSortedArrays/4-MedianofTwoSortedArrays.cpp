@@ -1,4 +1,4 @@
-// Last updated: 9/2/2026, 11:22:42 PM
+// Last updated: 9/2/2026, 11:22:51 PM
 1class Solution {
 2public:
 3    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
