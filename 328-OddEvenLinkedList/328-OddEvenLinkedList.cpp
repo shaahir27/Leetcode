@@ -1,43 +1,18 @@
-// Last updated: 8/3/2026, 11:36:29 PM
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* oddEvenList(ListNode* head) {
-
-        if(head == NULL || head->next == NULL) return head;
-
-        ListNode* odd = head;
-        ListNode* even = head->next;
-
-        ListNode* temp = even->next;
-
-        int count = 3;
-
-        while(temp){
-            if(count%2 == 1){
-                ListNode* node = temp;
-                temp = temp->next;
-                node->next = odd->next;
-                odd->next = node;
-                even->next = temp;
-                odd = node;
-                
-            }
-            else if(count%2 == 0){
-                even = temp;
-                temp = temp->next;
-            }
-            count++;
-        }
-        return head;
-    }
-};
+// Last updated: 9/23/2026, 10:58:15 PM
+1class Solution {
+2public:
+3    vector<int> transformArray(vector<int>& nums) {
+4        int n = nums.size();
+5
+6        for(int i=0; i<n; i++){
+7            if(nums[i]%2 == 0){
+8                nums[i] = 0;
+9            }
+10            else{
+11                nums[i] = 1;
+12            }
+13        }
+14        sort(nums.begin(), nums.end());
+15        return nums;
+16    }
+17};
