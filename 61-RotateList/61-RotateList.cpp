@@ -1,4 +1,4 @@
-// Last updated: 9/20/2026, 10:55:46 PM
+// Last updated: 9/23/2026, 10:50:48 PM
 1/**
 2 * Definition for singly-linked list.
 3 * struct ListNode {
@@ -11,49 +11,52 @@
 10 */
 11class Solution {
 12public:
-13    ListNode* rotateRight(ListNode* head, int k) {
-14
-15        if (head == NULL || head->next == NULL || k == 0)
-16            return head;
-17
-18        ListNode* dummy = new ListNode(-1);
-19        ListNode* temp = head;
-20        ListNode* current = dummy;
-21
-22        int length = 0;
+13    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+14        ListNode* temp = head;
+15        int count = 0;
+16
+17        vector<ListNode*> arr;
+18
+19        while(temp){
+20            count++;
+21            temp = temp->next;
+22        }
 23
-24        while(temp){
-25            length++;
-26            temp = temp->next;
-27        }
+24        int nodes = count/k;
+25        int extra = count%k;
+26
+27        temp = head;
 28
-29        k = k%length;
-30
-31        if(k==0){
-32            return head;
-33        }
-34        
-35        int remaining = length - k;
-36        temp = head;
+29        while(k > 0){
+30            if(temp == NULL){
+31                arr.push_back(nullptr);
+32                k--;
+33                continue;
+34            }
+35
+36            int x = nodes;
 37
-38        while(remaining>0){
-39            current->next = temp;
-40            temp = temp->next;
-41            current = current->next;
-42            remaining--;
-43        }
-44
-45        current->next = NULL;
-46        current = dummy;
-47
-48        while(temp){
-49            ListNode* node = temp;
-50            temp = temp->next;
-51            node->next = current->next;
-52            current->next = node;
-53            current = node;
-54        }
+38            if(extra > 0){
+39                x++;
+40                extra--;
+41            }
+42
+43            ListNode* list = new ListNode(-1);
+44            ListNode* current = list;
+45
+46            while(x > 0){   
+47                current->next = temp;
+48                current = temp;
+49                temp = temp->next;
+50                current->next = NULL;
+51                x--;
+52            }
+53
+54            arr.push_back(list->next);
 55
-56        return dummy->next;
-57    }
-58};
+56            k--;
+57        }
+58
+59        return arr;
+60    }
+61};
