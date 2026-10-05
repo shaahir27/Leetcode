@@ -1,24 +1,24 @@
-// Last updated: 10/5/2026, 9:49:27 PM
-1class Solution {
-2public:
-3    int strStr(string haystack, string needle) {
-4        if(haystack.length() < needle.length()) return -1;
-5        
-6
-7        for(int i=0; i<haystack.length(); i++){
-8            if(haystack[i] == needle[0]){
-9                int x = i+1;
-10                int j = 1;
-11                while(j<needle.length()){
-12                    if(haystack[x] != needle[j]) break;
-13                    x++;
-14                    j++;
-15                }
-16
-17                if(j == needle.length()) return (x - j);
-18            }
-19        }
-20
-21        return -1;
-22    }
-23};
+// Last updated: 10/5/2026, 9:50:19 PM
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int n = haystack.length();
+        int m = needle.length();
+
+        if (m > n) return -1;
+
+        // Check each possible starting index in haystack
+        for (int i = 0; i <= n - m; ++i) {
+            int j = 0;
+            while (j < m && haystack[i + j] == needle[j]) {
+                j++;
+            }
+            // If full match found, return the starting index
+            if (j == m) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+};
