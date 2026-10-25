@@ -1,25 +1,28 @@
-// Last updated: 10/25/2026, 3:29:34 PM
-1class StockSpanner {
-2public:
-3    StockSpanner() {
-4    }
-5    stack<pair<int, int>> st;
-6    
-7    int next(int price) {
-8        int span = 1;
-9
-10        while(!st.empty() && st.top().first <= price){
-11            span += st.top().second;
-12            st.pop();
-13        }
-14
-15        st.push({price, span});
-16        return span;
-17    }
-18};
-19
-20/**
-21 * Your StockSpanner object will be instantiated and called as such:
-22 * StockSpanner* obj = new StockSpanner();
-23 * int param_1 = obj->next(price);
-24 */
+// Last updated: 10/25/2026, 3:40:08 PM
+class StockSpanner {
+private:
+    stack<pair<int, int>> st;
+
+    int idx = -1;
+
+public:
+    StockSpanner() {
+        idx = -1;
+    }
+
+    int next(int price) {
+        idx++;
+        while (!st.empty() && st.top().first <= price) {
+            st.pop();
+        }
+        int ans = idx - (st.empty() ? -1 : st.top().second);
+        st.push({price, idx});
+        return ans;
+    }
+};
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner* obj = new StockSpanner();
+ * int param_1 = obj->next(price);
+ */
