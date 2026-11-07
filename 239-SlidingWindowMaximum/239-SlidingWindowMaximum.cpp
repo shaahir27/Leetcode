@@ -1,4 +1,4 @@
-// Last updated: 11/7/2026, 10:51:05 PM
+// Last updated: 11/7/2026, 10:52:46 PM
 1class Solution {
 2public:
 3    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -8,7 +8,7 @@
 7        
 8        for (int i = 0; i < nums.size(); i++) {
 9
-10            if (!dq.empty() && dq.front() < start) {
+10            if (!dq.empty() && dq.front() < start) { // instead of start i can use i-k tooo, so no need of start variable
 11                dq.pop_front();
 12            }
 13
