@@ -1,24 +1,24 @@
-// Last updated: 11/7/2026, 10:52:46 PM
+// Last updated: 11/12/2026, 10:41:27 PM
 1class Solution {
 2public:
 3    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-4        deque<int> dq; // Stores indices of useful elements
+4        deque<int> dq; // Stores indices of useful elements // stores maximum's index
 5        vector<int> result;
 6        int start = 0;
 7        
 8        for (int i = 0; i < nums.size(); i++) {
-9
-10            if (!dq.empty() && dq.front() < start) { // instead of start i can use i-k tooo, so no need of start variable
+9            // out of sliding window
+10           if(!dq.empty() && dq.front() < start){
 11                dq.pop_front();
-12            }
+12           }
 13
-14            while (!dq.empty() && nums[dq.back()] < nums[i]) {
+14           while(!dq.empty() && nums[dq.back()] < nums[i]){
 15                dq.pop_back();
-16            }
+16           }
 17
-18            dq.push_back(i);
+18           dq.push_back(i);
 19
-20            if (i >= k - 1) {
+20            if(i>=k-1){
 21                result.push_back(nums[dq.front()]);
 22                start++;
 23            }
