@@ -1,4 +1,4 @@
-// Last updated: 11/21/2026, 11:29:31 PM
+// Last updated: 11/21/2026, 11:34:34 PM
 1/**
 2 * Definition for singly-linked list.
 3 * struct ListNode {
@@ -29,13 +29,48 @@
 28                count++;
 29                if(temp->next == NULL) return count;
 30
-31                while(temp->next != NULL && mpp[temp->next->val])
+31                while(temp->next != NULL && mpp[temp->next->val]){
 32                    temp = temp->next;
-33            }
-34
-35            temp = temp->next;
-36        }
-37
-38        return count;
-39    }
-40};
+33                }
+34            }
+35
+36            temp = temp->next;
+37        }
+38
+39        return count;
+40    }
+41};
+42
+43
+44/*
+45Approach using set instead of map
+46
+47Advantages:
+48    - Cleaner syntax with range initialization from nums
+49    - Stores unique keys only without dummy mapped values
+50    - Lower memory overhead per element than an unordered map
+51    - Avoids inserting missing keys during lookups via count or find
+52    - Simpler single pass logic with clear component entry and exit tracking
+53
+54class Solution {
+55public:
+56    int numComponents(ListNode* head, vector<int>& nums) {
+57        unordered_set<int> st(nums.begin(), nums.end());
+58        int count = 0;
+59        bool inComponent = false;
+60        while (head != NULL) {
+61            if (st.count(head->val)) {
+62                if (!inComponent) {
+63                    count++;
+64                    inComponent = true;
+65                }
+66            } 
+67            else {
+68                inComponent = false;
+69            }
+70            head = head->next;
+71        }
+72        return count;
+73    }
+74};
+75*/
