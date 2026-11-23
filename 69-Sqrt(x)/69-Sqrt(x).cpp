@@ -1,21 +1,25 @@
-// Last updated: 11/23/2026, 10:50:52 PM
-1class Solution {
-2public:
-3    int mySqrt(int x) {
-4        int left = 0;
-5        int right = x;
-6
-7        while(left<=right){
-8            int mid = left + (right - left)/2;
-9
-10            if((long long)mid*mid <= x){
-11                left = mid + 1;
-12            }
-13            else{
-14                right = mid - 1;
-15            }
-16        }
-17
-18        return right;
-19    }
-20};
+// Last updated: 11/23/2026, 10:51:26 PM
+class Solution {
+public:
+    int mySqrt(int x) {
+        int low = 0;
+        int high = x;
+        int ans = 0;
+
+        while(low <= high){
+            long long mid = low + (high - low)/2;
+            long long sq = mid*mid;
+            if(sq == x){
+                return mid;
+            }
+            else if(sq < x){
+                ans = mid;
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }  
+};
