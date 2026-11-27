@@ -1,65 +1,54 @@
-// Last updated: 11/27/2026, 12:01:11 PM
-1class MyCircularQueue {
-2private:
-3    vector<int> queue;
-4
-5    int front = 0;
-6    int capacity = 0;
-7    int size = 0;
-8public:
-9    MyCircularQueue(int k) {
-10        capacity = k;
-11        queue.resize(k);
-12    }
-13    
-14    bool enQueue(int value) {
-15        if(isFull()) return false;
-16
-17        int rearIdx = (front + size) % capacity;
-18        queue[rearIdx] = value;
-19        size++;
-20        
-21        return true;
-22    }
-23    
-24    bool deQueue() {
-25        if(isEmpty()) return false;
-26        
-27        front = (front + 1) % capacity;
-28        size--;
-29        return true;
-30    }
-31    
-32    int Front() {
-33        if(isEmpty()) return -1;
-34        else return queue[front];
-35    }
-36    
-37    int Rear() {
-38        if(isEmpty()) return -1;
-39        
-40        int rearIdx = (front + size - 1) % capacity;
-41        return queue[rearIdx];
-42    }
-43    
-44    bool isEmpty() {
-45        if(size == 0) return true;
-46        else return false;
-47    }
-48    
-49    bool isFull() {
-50        if(size == capacity) return true;
-51        else return false;
+// Last updated: 11/27/2026, 12:02:03 PM
+1
+2class MyCircularQueue {
+3private:
+4    vector<int> q;
+5    int front;
+6    int rear;
+7    int size;
+8    int capacity;
+9
+10public:
+11    MyCircularQueue(int k) {
+12        q.resize(k);
+13        front = 0;
+14        rear = -1;
+15        size = 0;
+16        capacity = k;
+17    }
+18
+19    bool enQueue(int value) {
+20        if (isFull()) return false;
+21
+22        rear = (rear + 1) % capacity;
+23        q[rear] = value;
+24        size++;
+25        return true;
+26    }
+27
+28    bool deQueue() {
+29        if (isEmpty()) return false;
+30
+31        front = (front + 1) % capacity;
+32        size--;
+33        return true;
+34    }
+35
+36    int Front() {
+37        if (isEmpty()) return -1;
+38        return q[front];
+39    }
+40
+41    int Rear() {
+42        if (isEmpty()) return -1;
+43        return q[rear];
+44    }
+45
+46    bool isEmpty() {
+47        return size == 0;
+48    }
+49
+50    bool isFull() {
+51        return size == capacity;
 52    }
 53};
-54
-55/**
-56 * Your MyCircularQueue object will be instantiated and called as such:
-57 * MyCircularQueue* obj = new MyCircularQueue(k);
-58 * bool param_1 = obj->enQueue(value);
-59 * bool param_2 = obj->deQueue();
-60 * int param_3 = obj->Front();
-61 * int param_4 = obj->Rear();
-62 * bool param_5 = obj->isEmpty();
-63 * bool param_6 = obj->isFull();
-64 */
